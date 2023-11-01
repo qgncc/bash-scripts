@@ -1,0 +1,41 @@
+#!/bin/sh
+name=$1
+path=$2
+if [ -z $path ]; then
+	path=$(pwd)
+fi
+if [ "${path: -1}" == "/" ]; then	
+	path="${path:0: -1}"
+fi
+name=${name^}
+componentPath="$path/$name"
+mkdir "$componentPath"
+
+indexFile="$componentPath/index.ts"
+scssFile="$componentPath/$name.scss"
+tsxFile="$componentPath/$name.tsx"
+
+touch $indexFile $scssFile $tsxFile
+
+cat > $tsxFile << tsx
+import "./$name.scss";
+
+interface I${name}Props{
+   
+}
+
+export const $name = ({}:I${name}Props)=>{
+   
+   return (
+      <>
+
+      </>
+   );
+}
+tsx
+
+cat > $indexFile << index
+import { $name } from "./$name.tsx";
+
+export { $name };
+index
