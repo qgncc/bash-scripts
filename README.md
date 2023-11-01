@@ -1,1 +1,2 @@
-# My scripts\n1.crc — create react component
+# My scripts
+1.crc — create react component
