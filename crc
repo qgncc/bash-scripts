@@ -35,7 +35,5 @@ export const $name = ({}:I${name}Props)=>{
 tsx
 
 cat > $indexFile << index
-import { $name } from "./$name.tsx";
-
-export { $name };
+export { $name } from "./$name.tsx";
 index
