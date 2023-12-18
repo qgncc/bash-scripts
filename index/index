@@ -9,7 +9,9 @@ fi
 
 cd $path
 while read -r line; do
-	 result+="export * from \"./${line%.*}\"\n"
+    if [[ -f "$line/index.ts" ]]; then
+        result+="export * from \"./${line%.*}\"\n"
+    fi
 done < <(ls -d */ | cut -f1 -d'/')
 while read -r line; do
     if [[ "$line" == "index.ts" ]]; then
