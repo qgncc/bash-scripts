@@ -10,8 +10,11 @@ fi
 cd $path
 while read -r line; do
 	 result+="export * from \"./${line%.*}\"\n"
-done < <(ls -d "*/" | cut -f1 -d'/')
+done < <(ls -d */ | cut -f1 -d'/')
 while read -r line; do
+    if [[ "$line" == "index.ts" ]]; then
+        continue
+    fi
 	result+="export * from \"./${line%.*}\";\n"
 done < <(ls | grep .ts)
 echo -e "$result" > index.ts
