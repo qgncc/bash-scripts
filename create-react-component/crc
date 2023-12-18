@@ -20,11 +20,11 @@ touch $indexFile $scssFile $tsxFile
 cat > $tsxFile << tsx
 import "./$name.scss";
 
-interface I${name}Props{
+export interface ${name}Props{
    
 }
 
-export const $name = ({}:I${name}Props)=>{
+export const $name<${name}Props> = ({})=>{
    
    return (
       <>
@@ -35,5 +35,5 @@ export const $name = ({}:I${name}Props)=>{
 tsx
 
 cat > $indexFile << index
-export { $name } from "./$name.tsx";
+export * from "./$name";
 index
